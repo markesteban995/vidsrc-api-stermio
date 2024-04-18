@@ -37,7 +37,7 @@ async def handle(url) -> dict:
 
     # GET SUB
     subtitles = {}
-    subtitles = await subtitle.vscsubs(SUB_URL)
+    #subtitles = await subtitle.vscsubs(SUB_URL)
 
     # DECODE SRC
     key_req        = await fetch('https://raw.githubusercontent.com/Ciarands/vidsrc-keys/main/keys.json')
@@ -49,12 +49,16 @@ async def handle(url) -> dict:
 
     # GET FUTOKEN
     req = await fetch("https://vidplay.online/futoken", {"Referer": url})
+    print(req.text)
     fu_key = re.search(r"var\s+k\s*=\s*'([^']+)'", req.text).group(1)
+    print(fu_key)
     data = f"{fu_key},{','.join([str(ord(fu_key[i % len(fu_key)]) + ord(key[i])) for i in range(len(key))])}"
+    print(data)
     
     # GET SRC
     req = await fetch(f"https://vidplay.online/mediainfo/{data}?{SUB_URL}&autostart=true",headers={"Referer": url})
     req_data = req.json()
+    print(req_data)
 
     # RETURN IT
     if type(req_data.get("result")) == dict:

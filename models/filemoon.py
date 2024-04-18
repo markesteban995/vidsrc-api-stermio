@@ -9,7 +9,7 @@ async def handle(url) -> dict:
 
     # GET SUB
     subtitles = []
-    subtitles = await subtitle.vscsubs(SUB_URL)
+    #subtitles = await subtitle.vscsubs(SUB_URL)
 
 	# GET SRC
     request = await fetch(url)

@@ -38,9 +38,12 @@ async def decode_url(encrypted_source_url:str,VIDSRC_KEY:str):
       t = (s[i] + s[k]) & 0xff
       decoded[index] = encoded[index] ^ s[t]
     decoded_text = decoded.decode('utf-8')
+    print(unquote(decoded_text))
     return unquote(decoded_text)
 
-async def fetch(url:str,headers:dict={},method:str="GET",data=None,redirects:bool=True):
+async def fetch(url:str,headers:dict={
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36',
+    },method:str="GET",data=None,redirects:bool=True):
     async with httpx.AsyncClient(follow_redirects=redirects) as client:
         if method=="GET":
             response = await client.get(url,headers=headers)
