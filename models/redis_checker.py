@@ -41,7 +41,7 @@ def check_urls(redis_conn, key: str):
             if response.status_code != 200:
                 print("failed")
                 return 0
-        except requests.RequestException:
+        except Exception:
             print("failed")
             return 0
 
