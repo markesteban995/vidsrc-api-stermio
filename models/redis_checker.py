@@ -15,8 +15,12 @@ def store_json(redis_conn, key, json_data):
 # Step 3: Retrieve JSON from Redis
 def retrieve_json(redis_conn, key: str):
     print(f"KEY ====> {str(key)}")
-    json_data = redis_conn.get(str(key))
-    return json.loads(json_data) if json_data else None
+    try:
+        json_data = redis_conn.get(str(key))
+        return json.loads(json_data) if json_data else None
+    except:
+        return None
+
 
 # Step 4: Check if all URLs in the JSON resolve correctly
 def check_urls(redis_conn, key: str):

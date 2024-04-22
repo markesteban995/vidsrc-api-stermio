@@ -113,7 +113,9 @@ async def get_stream(type: str, id: str):
             if source['data']['stream'] and source['data']['stream'].strip()
         ]
         m3u8_lists = m3u8_parser.getJSONs({'streams': streamsList})
-        redis_checker.store_json(redcon,id,m3u8_lists)
+        print(streamsList)
+        if len(m3u8_lists['streams']) > 0:
+            redis_checker.store_json(redcon,id,m3u8_lists)
         return m3u8_lists
     else:
         print("returned stored ")
