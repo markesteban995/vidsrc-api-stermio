@@ -17,7 +17,8 @@ async def handle(url) -> dict:
     unpacked = await unpack(*processed_matches)
     hls_url = re.search(r'file:"([^"]*)"', unpacked).group(1)
     return {
-        'stream':hls_url,
+        #'stream':hls_url,
+        'stream':url,
         'subtitle':subtitles,
 	    'filemoon':url
     }
