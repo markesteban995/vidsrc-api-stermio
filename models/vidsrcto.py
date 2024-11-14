@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from . import vidplay,filemoon
 from .utils import fetch,error,decode_url
 
-VIDSRC_KEY:str = "WXrUARXb1aDLaZjI"
+VIDSRC_KEY:str = "QIP5jcuvYEKdG"
 SOURCES:list = ['Vidplay','Filemoon']
 
 async def get_source(source_id:str,SOURCE_NAME:str) -> str:
